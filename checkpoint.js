@@ -250,7 +250,18 @@ BinarySearchTree.prototype.toArray = function() {
 // informarse sobre algoritmos, leerlos de un pseudocodigo e implemnterlos alcanzara
 
 function primalityTest(n) {
-    
+        if (n == 2 || n == 3) {
+               return true;
+        }
+        if (n <= 1 || n % 2 == 0 || n % 3 == 0) {
+               return false;  
+        }
+        
+        for (let i = 5; i * i <= n ; i+=6);
+             if (n % i == 0 || n % (i + 2) == 0) {
+               return false;
+        }
+        return true;
 }
 
 
@@ -260,8 +271,35 @@ function primalityTest(n) {
 // https://en.wikipedia.org/wiki/Quicksort
 
 function quickSort(array) {
-    
-}
+    if(array.length <= 1) {
+        return array;
+      }
+      
+      let izquierda = [];
+      let derecha = [];
+      let auxiliar = [];
+      let pivote = array.pop(); // esto va a ser el último elemento del arreglo, con .pop se extrae el último elemento del arreglo
+      let n = array.length; // longitud del arreglo actual
+      
+      for (let i = 0; i < n; i++) {  //ciclo for, que itere por índices[i], vamos hasta n, segun la longitud del arreglo
+        if (array[i] <= pivote) {    //si el ultimo elemento es menor o igual al pivote
+          izquierda.push(array[i]);  //si eso ocurre en el arreglo izquierdo, agregamos ese elemento
+        } else {
+          derecha.push(array[i]);    //caso contarrio lo agregamos en el arreglo del lado derecho
+        }
+      }
+      return auxiliar.concat(quickSort(izquierda), pivote, quickSort(derecha));
+      }
+      
+      //ESTO ES SI LO QUEREMOS VER POR CONSOLA:
+      let primos = [19, 13, 2, 11, 7, 5, 23, 17];
+      console.log(primos);
+      
+      console.log();
+      
+      let resultado = quickSort(primos);
+      console.log(resultado); [2, 5, 7, 11, 13, 17, 19, 23];  
+
 // QuickSort ya lo conocen solo que este 
 // ordena de mayor a menor
 // para esto hay que unir como right+mid+left o cambiar el 
@@ -271,7 +309,6 @@ function quickSort(array) {
 
 
 // ----- EXTRA CREDIT -----
-
 // EJERCICIO 11
 // Implementa la función 'reverse', que recibe un numero entero como parametro
 // e invierte el mismo.
@@ -283,8 +320,15 @@ function quickSort(array) {
 // < 32859
 
 function reverse(num){
-    
+    return Number(num.toString().split("").reverse().join(""));
 }
+
+//PARA VERLO POR CONSOLA:
+let valor = 95823;
+
+console.log(valor);
+console.log(reverse(valor));
+
 // la grandiosa resolucion de Wilson!!!
 // declaran una variable donde 
 // almacenar el el numero invertido
